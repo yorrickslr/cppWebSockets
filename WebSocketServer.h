@@ -19,7 +19,6 @@
 #include <list>
 #include <stdio.h>
 #include <ctime>
-#include <sys/time.h>
 #include <iostream>
 #include <sstream>
 #include "libwebsockets.h"

@@ -11,19 +11,20 @@
 
 #include <stdio.h>
 #include "Util.h"
+#include <windows.h>
+#include <string>
 
 using namespace std;
 
-#define LOG_PREFIX      "[cppWebSockets] "
+#define LOG_PREFIX "[cppWebSockets] "
 
 void Util::log( const string& message )
 {
     const string& logMessage = LOG_PREFIX + message;
-    syslog( LOG_WARNING, "%s", logMessage.c_str( ) );
+    // syslog( LOG_WARNING, "%s", logMessage.c_str( ) );
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
 
-#ifdef LOG_TO_STDOUT
-        printf( "%s\n", logMessage.c_str( ) );
-#endif 
+    cerr << logMessage << std::endl;
 }
 
 void Util::log( const char* message )

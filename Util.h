@@ -13,7 +13,6 @@
 #define _UTIL_H
 
 #include <string>
-#include <syslog.h>
 #include <iostream>
 #include <sstream>
 

@@ -11,10 +11,7 @@
  *  -------------------------------------------------------------------------- 
  **/
 
-// Log to stdout for easy debugging.
-#define LOG_TO_STDOUT 1
-
-#include "../../Util.h"
+#include <exception>
 #include "../../WebSocketServer.h"
 
 using namespace std;
@@ -48,24 +45,35 @@ EchoServer::~EchoServer( )
 
 void EchoServer::onConnect( int socketID )
 {
-    Util::log( "New connection" );
+    cout << "New connection (id " << socketID << ")" << endl;
 }
 
 void EchoServer::onMessage( int socketID, const string& data )
 {
     // Reply back with the same message
-    Util::log( "Received: " + data );
-    this->send( socketID, data );
+	try {
+		cout << "Received: " << data << endl;
+	}
+	catch (exception e) {
+		cerr << "Error while receiving data: " + *e.what() << endl;
+	}
+	cout << "try to send " << data << " to " << socketID << endl;
+	try {
+		this->send(socketID, data);
+	}
+	catch (exception e) {
+		cerr << "Error while sending data: " + *e.what() << endl;
+	}
 }
 
 void EchoServer::onDisconnect( int socketID )
 {
-    Util::log( "Disconnect" );
+    cout << "Disconnect" << endl;
 }
 
 void EchoServer::onError( int socketID, const string& message )
 {
-    Util::log( "Error: " + message );
+    cerr << "Error: " << message << endl;
 }
 
 

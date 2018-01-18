@@ -13,7 +13,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
 #include <fcntl.h>
 #include "libwebsockets.h"
 #include "Util.h"
